@@ -1,0 +1,128 @@
+<html>
+<head>
+	<title>Victoria II Calculator</title>
+	<link rel="icon" type="image/png" href="favicon.png">
+	<style>
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance:none;
+		margin:0;
+	}
+	.input {
+		background-size:cover;
+		background-color:#DDD;
+		border:0;
+		height:14vw;
+		width:14vw;
+		text-align:center;
+		font-size:10vw;
+		font-weight:bold;
+		color:#FFF;
+		padding:0;
+		margin:0;
+	}
+	.output {
+		margin:0;
+		padding:0;
+		font-size:2.5vw;
+	}
+	.Numbers {
+		position:absolute;
+		width:6.6vw;
+		height:6.6vw;
+		margin:0;
+		padding:0;
+		text-align:center;
+		background-size:cover;
+		font-size:4vw;
+		font-weight:bold;
+		color:#FFF;
+	}
+	.UpArrow {
+		background-size:14vw 4.5vw;
+		background-image:url('arrow.png');
+		background-position:center;
+		position:absolute;
+		height:3.5vw;
+		width:14vw;
+		top:8vw;
+		z-index:1;
+	}
+	.DownArrow {
+		background-size:14vw 4.5vw;
+		background-image:url('arrow.png');
+		background-position:center;
+		position:absolute;
+		height:3.5vw;
+		width:14vw;
+		top:18.5vw;
+		z-index:2;
+		-moz-transform: scaleY(-1);
+		-o-transform: scaleY(-1);
+		-webkit-transform: scaleY(-1);
+		transform: scaleY(-1);
+		filter: FlipV;
+		-ms-filter: "FlipV";
+	}
+	</style>
+</head>
+<body style="background-color:#BBB;overflow:hidden;"
+	<div style="position:relative;width:100vw;height:56.25vw;left:0vw;">
+		<script src="script.js"></script>
+		<input id="limitInput" style="position:absolute;width:20vw;left:0vw;top:8vw;background-color:rgba(0,0,0,0);" oninput="calculate();" type="number" value="0" min="0" class="input">
+		<input id="infInput" style="position:absolute;left:20vw;top:8vw; background-image:url('InfantryModified.png');" oninput="calculate();" type="number" value="0" min="0" class="input" disabled>
+		<input id="artInput" style="position:absolute;left:34vw;top:8vw; background-image:url('ArtilleryModified.png');" oninput="calculate();" type="number" value="0" min="0" class="input" disabled>
+		<input id="husInput" style="position:absolute;left:48vw;top:8vw;background-image:url('HussarModified.png');" oninput="calculate();" type="number" value="0" min="0" class="input" disabled>
+		<input id="mobInput" style="position:absolute;width:18vw;left:62vw;top:8vw;background-color:rgba(0,0,0,0);background-image:url('Mob.png');" oninput="calculate();" type="number" value="0" min="0" class="input">
+		<input id="mobDivsInput" style="position:absolute;left:80vw;top:8vw;" oninput="calculate();" type="number" value="0" min="0" class="input" disabled>
+		<div id="limitInputUp" onmousedown="arrow(1,'limit');" onmouseup="unclick();" onmouseout="unclick();" style="left:0vw;width:20vw;" class="UpArrow"></div>
+		<div id="infInputUp" onmousedown="arrow(1,'inf');" onmouseup="unclick();" onmouseout="unclick();" style="left:20vw;" class="UpArrow"></div>
+		<div id="artInputUp" onmousedown="arrow(1,'art');" onmouseup="unclick();" onmouseout="unclick();" style="left:34vw;" class="UpArrow"></div>
+		<div id="husInputUp" onmousedown="arrow(1,'hus');" onmouseup="unclick();" onmouseout="unclick();" style="left:48vw;" class="UpArrow"></div>
+		<div id="mobInputUp" onmousedown="arrow(1,'mob');" onmouseup="unclick();" onmouseout="unclick();" style="left:62vw;width:18vw;" class="UpArrow"></div>
+		<div id="mobDivsInputUp" onmousedown="arrow(1,'mobDivs');" onmouseup="unclick();" onmouseout="unclick();" style="left:80vw;" class="UpArrow"></div>
+		<div id="limitInputDown" onmousedown="arrow(-1,'limit');" onmouseup="unclick();" onmouseout="unclick();" style="left:0vw;width:20vw;" class="DownArrow"></div>
+		<div id="infInputDown" onmousedown="arrow(-1,'inf');" onmouseup="unclick();" onmouseout="unclick();" style="left:20vw;" class="DownArrow"></div>
+		<div id="artInputDown" onmousedown="arrow(-1,'art');" onmouseup="unclick();" onmouseout="unclick();" style="left:34vw;" class="DownArrow"></div>
+		<div id="husInputDown" onmousedown="arrow(-1,'hus');" onmouseup="unclick();" onmouseout="unclick();" style="left:48vw;" class="DownArrow"></div>
+		<div id="mobInputDown" onmousedown="arrow(-1,'mob');" onmouseup="unclick();" onmouseout="unclick();" style="left:62vw;width:18vw;" class="DownArrow"></div>
+		<div id="mobDivsInputUp" onmousedown="arrow(-1,'mobDivs');" onmouseup="unclick();" onmouseout="unclick();" style="left:80vw;" class="DownArrow"></div>
+		<div style="background-color:orange;position:absolute;left:22vw;top:28vw;width:40vw;height:10vw;" class="output">
+			<div id="infReq" style="position:relative;left:1vw;top:0.5vw;" class="output">No Change in Infantry</div>
+			<div id="artReq" style="position:relative;left:1vw;top:0.5vw;" class="output">No Change in Artillery</div>
+			<div id="husReq" style="position:relative;left:1vw;top:0.5vw;" class="output">No Change in Hussar</div>
+			<div style="position:relative;bottom:5vw;left:25vw;font-weight:bold;" class="output">Professional</div>
+		</div>
+		<div style="background-color:#007DD8;position:absolute;left:22vw;top:40vw;width:40vw;height:7vw;" class="output">
+			<div id="artMobReq" style="position:relative;left:1vw;top:0.5vw;" class="output">No Change in Artillery</div>
+			<div id="husMobReq" style="position:relative;left:1vw;top:0.5vw;" class="output">No Change in Hussar</div>
+			<div style="position:relative;bottom:3.5vw;left:25vw;font-weight:bold;" class="output">Mobilized</div>
+		</div>
+		<div style="position:absolute;left:20vw;top:1vw;width:56vw;height:7vw; text-align:center;font-size:6vw;font-weight:bold;color:#FFF;padding:0;margin:0;">Units Available</div>
+		<div style="position:absolute;left:0vw;top:0vw;width:20vw;height:8vw; text-align:center;font-size:4vw;font-weight:bold;color:#FFF;padding:0;margin:0;">Force Limit</div>
+		<div style="position:absolute;left:79vw;top:1vw;width:16vw;height:8vw; text-align:center;font-size:2vw;font-weight:bold;color:#FFF;padding:0;margin:0;">Number of Mobilized Divisions Desired</div>
+		<div style="position:absolute;left:0vw;top:22vw;width:20vw;height:6vw; text-align:center;font-size:2vw;font-weight:bold;color:#FFF;padding:0;margin:0;">(Number of Brigades Supported)</div>
+		<div style="position:absolute;left:20vw;top:22vw;width:14vw;height:6vw; text-align:center;font-size:3vw;font-weight:bold;color:#FFF;padding:0;margin:0;">Infantry</div>
+		<div style="position:absolute;left:34vw;top:22vw;width:14vw;height:6vw; text-align:center;font-size:3vw;font-weight:bold;color:#FFF;padding:0;margin:0;">Artillery</div>
+		<div style="position:absolute;left:48vw;top:22vw;width:14vw;height:6vw; text-align:center;font-size:3vw;font-weight:bold;color:#FFF;padding:0;margin:0;">Hussar</div>
+		<div style="position:absolute;left:62vw;top:22vw;width:14vw;height:6vw; text-align:center;font-size:3vw;font-weight:bold;color:#FFF;padding:0;margin:0;">Mobilized</div>
+		<div style="position:absolute;left:82vw;top:30vw;padding:0;margin:0;"><input id="sixtyKCheck" type="checkbox" onclick="switchSize();" style="width:3vw;height:3vw;padding:0;margin:0;"><label style="position:relative;left:0.5vw;top:-0.vw;text-align:center;font-size:3vw;font-weight:bold;color:#FFF;padding:0;margin:0;">60K</label></div>
+		<button id="allMobButton" onclick="allMob();" style="position:absolute;left:80vw;top:22vw;height:6vw;font-size:2vw;border:0.4vw solid #999;" class="input">As many as possible</button>
+		<div style="position:relative;left:0vw;top:27vw;height:20.6vw;width:20vw;">
+			<div id="limitOverflow" style="font-size:2.5vw;left:0vw;top:14vw;width:8vw;" class="Numbers">0 Left Over</div>
+			<div style="left:1vw;font-size:3.3vw;width:20vw;color:black;" class="Numbers">Total Brigades</div>
+			<div id="infNum" style="left:0.2vw;top:7vw;background-image:url('InfantryModified.png');" class="Numbers">0</div>
+			<div id="artNum" style="left:6.8vw;top:7vw;background-image:url('ArtilleryModified.png');" class="Numbers">0</div>
+			<div id="husNum" style="left:13.4vw;top:7vw;background-image:url('HussarModified.png');" class="Numbers">0</div>
+			<div id="artMobNum" style="left:6.8vw;top:14vw;background-image:url('ArtilleryModified.png');" class="Numbers">0</div>
+			<div id="husMobNum" style="left:13.4vw;top:14vw;background-image:url('HussarModified.png');" class="Numbers">0</div>
+		</div>
+		<div style="background-color:#FF6666;position:absolute;left:63vw;top:28vw;width:17vw;height:19vw;">
+			<div style="top:0.5vw;width:18vw;font-size:3.3vw;color:black;" class="Numbers">Change Needed</div>
+			<div id="infChange" style="position:relative;top:9vw;font-size:2vw;text-align:center;">Train no Infantry</div>
+			<div id="artChange" style="position:relative;top:10vw;font-size:2vw;text-align:center;">Train no Artillery</div>
+			<div id="husChange" style="position:relative;top:11vw;font-size:2vw;text-align:center;">Train no Hussar</div>
+		</div>
+	</div>
+</body>
+</html>
